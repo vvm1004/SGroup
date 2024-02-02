@@ -1,0 +1,107 @@
+body{
+    background-color: #484B54
+
+}
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box1 {
+    position: relative;
+
+}
+
+.box1:hover {
+    opacity: 0.8;
+    cursor: pointer;
+
+}
+
+.box1:hover .text1 {
+    top: 40%;
+    color: #fff;
+
+}
+
+.box1:hover .text2 {
+    display: block;
+}
+
+.text1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #484c61;
+    font-size: 30px;
+    transition: top 0.3s;
+
+}
+
+.text1 span {
+    font-weight: 800;
+}
+
+.text2 {
+    position: absolute;
+    color: #fff;
+    display: none;
+    bottom: 37px;
+    left: 123px;
+    font-size: 20px;
+}
+
+.text2 span {
+    position: absolute;
+    left: 33px;
+}
+
+
+.box2 {
+    position: relative;
+    /* background: #4a3753; */
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-left: 40px;
+    
+}
+
+.box2:hover img{
+    border-bottom: 13px solid #fff
+}
+.box2:hover .text3{
+    top: 80%
+}
+.box2:hover .text3 i{
+    display: inline;
+}
+.text3 {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    font-weight: 400;
+    font-family: 'Raleway', Arial, sans-serif;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    transition: top 0.3s;
+}
+.text3 i {  
+    display: none;
+
+}
+
+
+.box2 img {
+	opacity: 0.9;
+	transition: opacity 0.35s;
+}
+.box2:hover img {
+	opacity: 0.5;
+}
+
+.box2 h2 span {
+    font-weight: 800;
+}
+

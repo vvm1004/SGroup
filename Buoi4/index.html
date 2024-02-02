@@ -4,71 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-<style>
-    .app {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .container {
-        position: relative;
-
-    }
-
-    .container:hover {
-        opacity: 0.8;
-        cursor: pointer;
-
-    }
-
-    .container:hover .text1 {
-        top: 30%;
-        color: #fff;
-
-    }
-
-    .container:hover .text2 {
-        display: block;
-    }
-
-    .text1 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #484c61;
-        font-size: 30px;
-        transition: top 0.3s;
-
-    }
-
-    .text1 span {
-        font-weight: 800;
-    }
-
-    .text2 {
-        position: absolute;
-        color: #fff;
-        display: none;
-        bottom: 37px;
-        left: 123px;
-        font-size: 20px;
-    }
-    .text2 span{
-        position: absolute;
-        left: 33px;
-    }
-    img{
-        filter: 70%;
-    }
-</style>
 
 <body>
     <div class="app">
-        <div class="container">
+        <div class="box1">
             <img src="https://tympanus.net/Development/HoverEffectIdeas/img/2.jpg" alt="">
             <div class="text1">
                 HOLY <span>SADIE</span>
@@ -76,9 +19,16 @@
             <div class="text2">
                 Sadie never took her eyes off me.
                 <br>
-                <span>She had a dark soul.</span> 
+                <span>She had a dark soul.</span>
             </div>
         </div>
+        <div class="box2">
+            <img src="https://tympanus.net/Development/HoverEffectIdeas/img/4.jpg" alt="img04" />
+                <div class="text3">
+                    <h2>Dreamy <span>Honey</span>  <i>Now</i></h2>
+                </div>
+        </div>
+
 
     </div>
 </body>
