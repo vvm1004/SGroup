@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.app {
+    height: 100vh;
+}
+
+.navbar {
+    background-color: #333;
+    /* Màu sắc của navbar */
+    color: #fff;
+    /* Màu chữ của navbar */
+    margin: 0px 5px 0px;
+    padding-top: 20px;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    background-color: #f0f0f0;
+    /* Màu sắc của sidebar */
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 20px;
+}
+
+.container_2 {
+    flex: 1;
+    /* Chia không gian cho container_2 để đảm bảo phần main và row chiếm đúng tỉ lệ */
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 2;
+    /* Phần main chiếm phần lớn hơn của container_2 */
+    background-color: red;
+    /* Màu sắc của main */
+    margin: 5px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    /* Phần row chiếm không gian bằng nhau */
+    margin: 0px 5px 5px;
+
+}
+
+.content1,
+.content2,
+.content3 {
+    flex-grow: 1;
+    /* Cân bằng không gian giữa các phần content và làm cho chúng mở rộng */
+    padding: 20px;
+    /* Thêm khoảng cách nếu cần */
+}
+
+.content1 {
+    background-color: #ffc107;
+    /* Màu sắc của content1 */
+}
+
+.content2 {
+    background-color: #28a745;
+    /* Màu sắc của content2 */
+}
+
+.content3 {
+    background-color: #007bff;
+    /* Màu sắc của content3 */
+}
+
+.footer {
+    flex-grow: 0.5;
+    /* Phần footer chiếm một phần nhỏ hơn so với content */
+    background-color: #333;
+    /* Màu sắc của footer */
+    color: #fff;
+    /* Màu chữ của footer */
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Mobile */
+
+@media (max-width: 739px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .row{
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar{
+        margin-right: 5px;
+    }
+}
