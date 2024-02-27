@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Giai phuong trinh bac 2 - page</title>
+</head>
+<body>
+<script type="text/javascript">
+	//ax2 + bx + c = 0
+	var a, b, c
+	// Nhap a, b, c
+	a = parseFloat(prompt('Nhap a = '))
+	b = parseFloat(prompt('Nhap b = '))
+	c = parseFloat(prompt('Nhap c = '))
+
+	// Viet lenh
+	if(a == 0) {
+		if(b == 0) {
+			if(c == 0) {
+				alert('Phuong trinh VSN')
+			} else {
+				alert('Phuong trinh VN')
+			}
+		} else {
+			x = -c/b
+			alert('Nghiem phuong trinh x = ' + x)
+		}
+	} else {
+		dt = b*b - 4*a*c;
+		if(dt < 0) {
+			alert('Phuong trinh vo nghiem')
+		} else if(dt == 0) {
+			x = -b/(2*a)
+			alert('Nghiem phuong trinh x1 = x2 = ' + x)
+		} else {
+			x1 = (-b + Math.sqrt(dt))/(2*a)
+			x2 = (-b - Math.sqrt(dt))/(2*a)
+			alert(`Nghiem x1 = ${x1}, x2 = ${x2}`)
+		}
+	}
+</script>
+</body>
+</html>

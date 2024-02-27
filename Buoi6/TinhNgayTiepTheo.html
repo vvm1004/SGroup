@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tính ngày tiếp theo - page</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Hàm kiểm tra năm nhuận
+        function isLeapYear(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+
+        var day = parseInt(prompt('Nhập ngày:'));
+        var month = parseInt(prompt('Nhập tháng:'));
+        var year = parseInt(prompt('Nhập năm:'));
+
+        // Kiểm tra tính hợp lệ của ngày, tháng, năm nhập vào
+        if (day < 1 || day > 31 || month < 1 || month > 12 || isNaN(day) || isNaN(month) || isNaN(year)) {
+            alert('Ngày tháng năm không hợp lệ.');
+        } else {
+            var daysInMonth = [31, 28 + isLeapYear(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+            if (day > daysInMonth[month - 1]) {
+                alert('Ngày không hợp lệ cho tháng này.');
+            } else {
+                day++;
+                if (day > daysInMonth[month - 1]) {
+                    day = 1;
+                    month++;
+                    if (month > 12) {
+                        month = 1;
+                        year++;
+                    }
+                }
+
+                alert('Ngày tiếp theo là: ' + day + '/' + month + '/' + year);
+            }
+        }
+    </script>
+</body>
+</html>
