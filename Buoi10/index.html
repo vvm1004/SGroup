@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card UI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="popup-container active">
+        <div class="popup-main">
+            <label for="field-name">Name</label>
+            <input type="text" id="field-name">
+            <label for="field-phone">Phone</label>
+            <input type="text" id="field-phone">
+            <label for="field-email">email</label>
+            <input type="text" id="field-email">
+            <button onclick="onCreate()">Create</button>
+        </div>
+    </div>
+    <div class="popup-container-edit active">
+        <div class="popup-main-edit">
+            <label for="field-name2">Name</label>
+            <input type="text" id="field-name2">
+            <label for="field-phone2">Phone</label>
+            <input type="text" id="field-phone2">
+            <label for="field-email2">email</label>
+            <input type="text" id="field-email2">
+            <button class="save-btn">Save</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <button id="create-btn">Create</button>
+        </div>
+        <div id="cards">
+            <div class="card">
+                <div class="card-item">
+                    <img src="https://api.iconify.design/material-symbols:android-contacts.svg" alt="">
+                    <span>Minh</span>
+                </div>
+                <div class="card-item">
+                    <img src="https://api.iconify.design/material-symbols:android-contacts.svg" alt="">
+                    <span>0917832929</span>
+                </div>
+                <div class="card-item">
+                    <img src="https://api.iconify.design/material-symbols:android-contacts.svg" alt="">
+                    <span>example@gmail.com</span>
+                </div>
+                <div class="action">
+                    <img src="https://api.iconify.design/material-symbols:edit.svg" alt="">
+                    <img src="https://api.iconify.design/material-symbols:auto-delete-outline.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="main.js"></script>
+
+</html>

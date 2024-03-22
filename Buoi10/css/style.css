@@ -1,0 +1,78 @@
+* {
+    font-family: "Hedvig Letters Sans", sans-serif;
+}
+#create-btn {
+    width: 100px;
+    height: 30px;
+    margin-bottom: 20px;
+    background-color: #a6d3fa;
+    border: none;
+    border-radius: 8px;
+}
+.card {
+    width: fit-content;
+    border: 1px solid #9e9e9e;
+    border-radius: 8px;
+    padding: 10px;
+}
+.card-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.action {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.action > img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1818188d;
+}
+.popup-container-edit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1818188d;
+}
+.popup-main {
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    height: fit-content;
+    background-color: #fff;
+}
+.popup-main button {
+    margin-top: 10px;
+}
+.popup-main-edit {
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    height: fit-content;
+    background-color: #fff;
+}
+.popup-main-edit button {
+    margin-top: 10px;
+}
+.active{
+    display: none;
+}
