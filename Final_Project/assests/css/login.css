@@ -106,7 +106,7 @@
 .login-remeber {
     color:  rgba(0, 0, 0, 0.65);
     font-family: Roboto;
-    font-size: 12px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
@@ -127,9 +127,18 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
+    margin-top: 24px;
 }
 
 .btn-login:hover {
     background-color: #0056b3;
     /* Màu nền xanh nhạt khi hover */
+}
+
+.error {
+    color: #FF0000; 
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    margin-top: 5px; 
+    display: block; /* Hiển thị lỗi dưới dạng block để nó nằm dưới input field */
 }

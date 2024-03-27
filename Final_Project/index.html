@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assests/css/base.css">
-    <link rel="stylesheet" href="assests/css/style.css">
+    <link rel="stylesheet" href="assests/css/login.css">
 
     <title>Login</title>
 </head>
@@ -21,7 +21,7 @@
             <div class="mark_group">
                 <img src="./assests/image/Mask group.png" alt="">
             </div>
-            <div class="login_form">
+            <form class="login_form">
                 <div class="login_wrapper">
                     <div class="login_header">
                         <span class="login">Login</span>
@@ -29,23 +29,25 @@
                     </div>
                     <div class="login-email_container">
                         <label class="login_email-label"  for="login_email">Email</label>
-                        <input type="email" id="login_email"  placeholder="Enter your email">
-                       
+                        <input type="email" id="login_email"  placeholder="Enter your email" autocomplete="email">
+                        <span id="emailError" class="error"></span>
                     </div>
                     <div class="login-password_container">
                         <label class="login_password-label" for="login_password">Password</label>
-                        <input type="password" id="login_password" placeholder="Enter your password">
+                        <input type="password" id="login_password" placeholder="Enter your password" autocomplete="current-password">
+                        <span id="passwordError" class="error"></span>
                     </div>
                     <div class="login-remeber">
-                        <input type="checkbox" name="" id="">
-                        Remember me
+                        <input type="checkbox" name="" id="remember_me">
+                        <label for="remember_me">Remember me</label>
                     </div>
                     <div class="btn-login">
                         Login
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
+<script src="./main.js"></script>
 </html>
