@@ -51,7 +51,12 @@ function renderTodos() {
 function createTodoBox(category, title, content) {
     return `
         <div class="box">
-            <div class="category">${category}</div>
+            <div class="category">${category}
+                <div class="category__img">
+                <img src="./assests/icon/edit.svg" alt="">
+                <img src="./assests/icon/delete.svg" alt="" onclick="onDelete(event)">
+                </div>
+            </div>
             <div class="title">${title}</div>
             <div class="title-line"></div>
             <div class="content">${content}</div>
@@ -80,6 +85,27 @@ function onCreate() {
 
     renderTodos();
     document.querySelector('.popup-container').classList.add('active');
+}
+
+function onDelete(event) {
+    // Lấy ra phần tử cha của biểu tượng delete, tức là phần tử .box
+    var boxElement = event.target.closest('.box');
+    // Lấy ra tiêu đề của task
+    var title = boxElement.querySelector('.title').innerText;
+
+    // Lấy danh sách tasks từ Local Storage
+    var todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+    // Lọc ra task có tiêu đề trùng với tiêu đề của task cần xoá
+    var updatedTodos = todos.filter(function(todo) {
+        return todo.title !== title;
+    });
+
+    // Cập nhật danh sách tasks mới vào Local Storage
+    localStorage.setItem('todos', JSON.stringify(updatedTodos));
+
+    // Render lại danh sách tasks
+    renderTodos();
 }
 
 
