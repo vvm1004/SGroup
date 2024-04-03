@@ -11,10 +11,21 @@
 </head>
 
 <body>
+    <div class="popup-container active">
+        <div class="popup-main">
+            <h1 style="margin-bottom: 8px; text-align: center;">Add new todo</h1>
+            <input type="text" id="field-name" placeholder="Category Etc: Marketing">
+            <input type="text" id="field-phone" placeholder="Title">
+            <!-- <input type="text" id="field-email"> -->
+            <textarea name="" id="" cols="30" rows="10" placeholder="Content"></textarea>
+            <button onclick="onCreate()">Submit</button>
+        </div>
+    </div>
+    
     <div class="app grid wide">
         <div class="header">
             <img src="./assests/image/Frame 101373.png" alt="">
-           <div class="header-text">
+           <div class="header-text" id="newTaskButton">
             <img src="./assests/icon/plus.svg" alt="">
                  New task
            </div>
@@ -171,5 +182,5 @@
         </div>
     </div>
 </body>
-
+<script src="./task.js"></script>
 </html>

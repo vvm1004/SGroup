@@ -193,3 +193,59 @@
 .header > img {
     padding-top: 20px;
 }
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Đặt màu nền với độ trong suốt */
+    z-index: 9999; /* Đảm bảo popup hiển thị trên các phần khác */
+}
+
+.popup-main {
+    padding: 20px; /* Tăng khoảng cách giữa nội dung và khung popup */
+    border-radius: 10px; /* Làm cong góc cho khung popup */
+    width: 500px; /* Đặt chiều rộng khung popup */
+    background-color: #ffffff; /* Màu nền của khung popup */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Đổ bóng cho khung popup */
+}
+
+.popup-main h1 {
+    margin-top: 0; /* Loại bỏ khoảng cách trên đầu tiêu đề */
+    font-size: 20px; /* Cỡ chữ cho tiêu đề */
+}
+
+.popup-main input[type="text"],
+.popup-main textarea {
+    width: 100%; /* Đặt chiều rộng cho các input và textarea */
+    margin-bottom: 10px; /* Khoảng cách giữa các input và textarea */
+    padding: 10px; /* Khoảng cách nội dung với viền của input và textarea */
+    border: 1px solid #ccc; /* Đặt viền cho input và textarea */
+    border-radius: 5px; /* Làm cong góc cho input và textarea */
+}
+.popup-main textarea{
+    height: 80px;
+}
+
+.popup-main button {
+    width: 100%; /* Đặt chiều rộng cho nút */
+    padding: 10px; /* Khoảng cách nội dung với viền của nút */
+    border: none; /* Loại bỏ viền của nút */
+    border-radius: 5px; /* Làm cong góc cho nút */
+    background-color: #007bff; /* Màu nền của nút */
+    color: #ffffff; /* Màu chữ của nút */
+    cursor: pointer; /* Đổi hình con trỏ khi di chuột qua nút */
+}
+
+.popup-main button:hover {
+    background-color: #0056b3; /* Màu nền của nút khi di chuột qua */
+}
+
+.active{
+    display: none;
+}
