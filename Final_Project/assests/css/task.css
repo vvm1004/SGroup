@@ -1,0 +1,116 @@
+.app {
+    height: 100vh;
+    background-color: #FFF;
+    /* Màu nền tổng thể */
+}
+
+.todo-list {
+    border-radius: 4px;
+    width: 260px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.text {
+    color: #FFF;
+    margin-left: 10px;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.number-box {
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number-text {
+    color: #FFF;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.todo {
+    background: #00A6DA;
+
+}
+.todo .text{
+    margin-right: 188px;
+}
+.todo .number-box{
+    background: #00CDDA;
+}
+
+.doing {
+    background: rgba(204, 172, 3, 0.56);
+}
+.doing .text{
+    margin-right: 182px;
+}
+.doing .number-box{
+    background: #DAB700;
+}
+
+.completed {
+    background: #3BC057;
+}
+.completed .text{
+    margin-right: 148px;
+}
+.completed .number-box{
+    background: #69CE7E;
+}
+.blocked {
+    background: #E74C3C;
+}
+.blocked .text{
+    margin-right: 172px;
+}
+.blocked .number-box{
+    background: #ec3520;
+}
+
+
+/* Styles for task boxes */
+/* .box {
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 4px;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+} */
+
+/* Example styles for the todo items */
+.todo .box {
+    border: 1px solid #00A6DA;
+}
+
+/* Example styles for the doing items */
+.doing .box {
+    border: 1px solid rgba(204, 172, 3, 0.56);
+}
+
+/* Example styles for the completed items */
+.completed .box {
+    border: 1px solid #3BC057;
+}
+
+/* Example styles for the blocked items */
+.blocked .box {
+    border: 1px solid #E74C3C;
+}

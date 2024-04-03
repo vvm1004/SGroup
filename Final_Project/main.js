@@ -17,7 +17,7 @@ document.querySelector('.btn-login').addEventListener('click', async () => {
 
         }
 
-        // Kiểm tra mật khẩu phải bao gồm chữ hoa, chữ thường, số và kí tự
+        // Kiểm tra mật khẩu phải lớn hơn 8 kí tự
         if (!isValidPassword(password)) {
             passwordError.textContent = "Password must be greater than 8 characters";
             isValid = false;
