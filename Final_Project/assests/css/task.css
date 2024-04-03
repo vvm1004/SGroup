@@ -48,69 +48,148 @@
     background: #00A6DA;
 
 }
-.todo .text{
+
+.todo .text {
     margin-right: 188px;
 }
-.todo .number-box{
+
+.todo .number-box {
     background: #00CDDA;
 }
 
 .doing {
     background: rgba(204, 172, 3, 0.56);
 }
-.doing .text{
+
+.doing .text {
     margin-right: 182px;
 }
-.doing .number-box{
+
+.doing .number-box {
     background: #DAB700;
 }
 
 .completed {
     background: #3BC057;
 }
-.completed .text{
+
+.completed .text {
     margin-right: 148px;
 }
-.completed .number-box{
+
+.completed .number-box {
     background: #69CE7E;
 }
+
 .blocked {
     background: #E74C3C;
 }
-.blocked .text{
+
+.blocked .text {
     margin-right: 172px;
 }
-.blocked .number-box{
+
+.blocked .number-box {
     background: #ec3520;
 }
 
+.line {
+    width: 260px;
+    height: 2px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
 
 /* Styles for task boxes */
-/* .box {
-    width: 100%;
+.box {
+    width: 260px;
+    height: 216px;
     background-color: #FFF;
     border-radius: 4px;
     margin-top: 10px;
+    margin-right: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .1), 0 8px 20px rgba(0, 0, 0, .1);
+}
+
+.category {
+    color: #4D8EFF;
+    font-family: "Plus Jakarta Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
     padding: 10px;
-    box-sizing: border-box;
-} */
-
-/* Example styles for the todo items */
-.todo .box {
-    border: 1px solid #00A6DA;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
-/* Example styles for the doing items */
-.doing .box {
-    border: 1px solid rgba(204, 172, 3, 0.56);
+.category img {
+    width: 18px;
+    height: 18.228px;
 }
 
-/* Example styles for the completed items */
-.completed .box {
-    border: 1px solid #3BC057;
+.title-line {
+    width: 253px;
+    height: 1px;
+    background: #DBDBDB;
 }
 
-/* Example styles for the blocked items */
-.blocked .box {
-    border: 1px solid #E74C3C;
+.title {
+    color: #393939;
+    font-family: "Plus Jakarta Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 10px;
+
+}
+
+.content {
+    color: #5A5C63;
+    font-family: "Plus Jakarta Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px;
+}
+
+.date-time {
+    color: #5A5C63;
+
+    font-family: "Plus Jakarta Sans";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.date-time img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 60px;
+    margin-top: 60px;
+    cursor: pointer;
+}
+.header > img {
+    padding-top: 20px;
 }
