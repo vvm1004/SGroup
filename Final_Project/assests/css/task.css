@@ -249,3 +249,8 @@
 .active{
     display: none;
 }
+
+.box-container {
+    overflow-y: auto; /* Bật tính năng cuộn theo chiều dọc */
+    max-height: 400px; /* Đặt chiều cao tối đa của hộp để hiển thị thanh cuộn */
+}

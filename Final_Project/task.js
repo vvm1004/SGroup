@@ -1,9 +1,14 @@
 
 
 
+
+
 let popupContainer = document.querySelector(".popup-container")
 let popupMain = document.querySelector(".popup-main")
 let newTaskButton = document.getElementById('newTaskButton')
+let todoBox = document.querySelector(".todo-box");
+
+
 //open popup
 newTaskButton.addEventListener('click', function () {
     document.getElementById("field-category").value = '';
@@ -23,31 +28,7 @@ popupMain.addEventListener('click', function (event) {
     event.stopPropagation()
 })
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Kiểm tra xem có dữ liệu trong Local Storage không
-    if (!localStorage.getItem("todos")) {
-        // Nếu không có, thêm dữ liệu mặc định vào Local Storage
-        var initialTodos = [
-            { categoryName: "Marketing", title: "Write SEO article for new product", content: "This is an existential moment for effective altruism and the rationalist community writ-large." },
-        ];
-        localStorage.setItem("todos", JSON.stringify(initialTodos));
-    }
-
-    // Render các mục todo
-    renderTodos();
-});
-
-function renderTodos() {
-    var todos = JSON.parse(localStorage.getItem("todos")) || [];
-    var todoContainer = document.querySelector(".todo-box");
-    todoContainer.innerHTML = "";
-
-    todos.forEach(function (todoItem, item) {
-        var todoHTML = createTodoBox(item, todoItem.categoryName, todoItem.title, todoItem.content);
-        todoContainer.innerHTML += todoHTML;
-    });
-}
-
+// Function to create a new task box
 function createTodoBox(item, category, title, content) {
     return `
         <div class="box">
@@ -67,6 +48,8 @@ function createTodoBox(item, category, title, content) {
         </div>
     `;
 }
+
+// Function to add a new task
 function onCreate() {
     var categoryName = document.getElementById("field-category").value;
     var title = document.getElementById("field-title").value;
@@ -82,18 +65,42 @@ function onCreate() {
     todos.push(todoItem);
     localStorage.setItem('todos', JSON.stringify(todos));
 
-    renderTodos();
-    document.querySelector('.popup-container').classList.add('active');
+    var todoHTML = createTodoBox(todos.length - 1, categoryName, title, content);
+    todoBox.innerHTML += todoHTML;
+
+    popupContainer.classList.add('active');
 }
 
+// Function to delete a task
 function onDelete(item) {
     var todos = JSON.parse(localStorage.getItem("todos")) || [];
-    todos.splice(item, 1); // Xóa mục công việc khỏi mảng
-    localStorage.setItem("todos", JSON.stringify(todos)); // Cập nhật dữ liệu trong Local Storage
-    renderTodos(); // Render lại danh sách mục công việc
+    todos.splice(item, 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+    todoBox.innerHTML = ""; // Clear the task boxes
+
+    // Re-render all task boxes
+    todos.forEach(function (todo, index) {
+        var todoHTML = createTodoBox(index, todo.categoryName, todo.title, todo.content);
+        todoBox.innerHTML += todoHTML;
+    });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Check if there is data in Local Storage
+    if (!localStorage.getItem("todos")) {
+        // If not, add default data to Local Storage
+        var initialTodos = [
+            { categoryName: "Marketing", title: "Write SEO article for new product", content: "This is an existential moment for effective altruism and the rationalist community writ-large." },
+        ];
+        localStorage.setItem("todos", JSON.stringify(initialTodos));
+    }
 
+    var todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-
-renderTodos();
+    // Render all task boxes
+    todos.forEach(function (todo, index) {
+        var todoHTML = createTodoBox(index, todo.categoryName, todo.title, todo.content);
+        todoBox.innerHTML += todoHTML;
+    });
+});
