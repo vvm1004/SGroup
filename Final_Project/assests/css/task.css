@@ -10,7 +10,7 @@
     height: 34px;
     display: flex;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 44px;
 }
 
 .text {
@@ -97,7 +97,7 @@
     width: 260px;
     height: 2px;
     margin-top: 10px;
-    margin-right: 40px;
+    margin-right: 46px;
 }
 
 /* Styles for task boxes */
@@ -252,11 +252,17 @@
 .popup-main input[type="radio"]{
     margin-right: 4px;
 }
-.active{
+
+.hidden{
     display: none;
+}
+.todo-container {
+    display: flex;
+    /* justify-content: space-between; */
 }
 
 .box-container {
-    overflow-y: auto; /* Bật tính năng cuộn theo chiều dọc */
-    max-height: 400px; /* Đặt chiều cao tối đa của hộp để hiển thị thanh cuộn */
+    width: 25%;
+    height: 1000px;
+    /* background-color: #0056b3; */
 }

@@ -133,4 +133,3 @@ function openEditPopupWithDetails(index) {
     editPopupContainer.classList.toggle('active');
 }
 
-

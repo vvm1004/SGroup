@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="popup-container active">
+    <div class="popup-container hidden">
         <div class="popup-main">
             <h1 style="margin-bottom: 8px; text-align: center;">Add new todo</h1>
             <input type="text" id="field-category" placeholder="Category Etc: Marketing">
@@ -20,37 +20,46 @@
             <button onclick="onCreate()">Submit</button>
         </div>
     </div>
-    <div class="popup-container edit-popup active">
+    <div class="popup-container edit-popup hidden">
         <div class="popup-main popup-main2">
+            <input type="hidden" id="edit-task-index">
             <h1 style="margin-bottom: 8px; text-align: center;">Edit Todo</h1>
             <input type="text" id="edit-field-category" placeholder="Category Etc: Marketing">
             <input type="text" id="edit-field-title" placeholder="Title">
             <textarea name="" id="edit-field-content" cols="30" rows="10" placeholder="Content"></textarea>
             <div class="checkbox-radio">
                 <div class="radio">
-                    <input type="radio" name="radio" id="" >ToDo</input>
+                    <input type="radio" name="radio" id="todo" value="ToDo">
+                    <label for="todo">ToDo</label>
+
                 </div>
                 <div class="radio">
-                    <input type="radio" name="radio" id="" >Doing</input>
+                    <input type="radio" name="radio" id="doing" value="Doing">
+                    <label for="doing">Doing</label>
                 </div>
-                <div class="">
-                    <input type="radio" name="radio" id="" >Finished</input>
+                <div class="radio">
+                    <input type="radio" name="radio" id="completed" value="Completed">
+                    <label for="completed">Completed</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="blocked" value="Blocked">
+                    <label for="blocked">Blocked</label>
                 </div>
             </div>
-           
+
             <button style="margin-top: 8px;" onclick="onUpdate()">Update</button>
         </div>
     </div>
-    
-    
-    
+
+
+
     <div class="app grid wide">
         <div class="header">
             <img src="./assests/image/Frame 101373.png" alt="">
-           <div class="header-text" id="newTaskButton">
-            <img src="./assests/icon/plus.svg" alt="">
-                 New task
-           </div>
+            <div class="header-text" id="newTaskButton">
+                <img src="./assests/icon/plus.svg" alt="">
+                New task
+            </div>
         </div>
 
         <div class="container row">
@@ -59,7 +68,7 @@
                 <div class="number-box">
                     <span class="number-text">3</span>
                 </div>
-               
+
             </div>
 
             <div class="doing todo-list">
@@ -73,7 +82,7 @@
                 <div class="number-box">
                     <span class="number-text">3</span>
                 </div>
-              
+
             </div>
             <div class="blocked todo-list ">
                 <span class="text">Blocked</span>
@@ -100,20 +109,21 @@
 
         <div class="row todo-container">
             <div class="todo-box box-container">
-                
+                <!-- <div class="box"></div> -->
             </div>
             <div class="doing-box box-container">
             </div>
             <div class="completed-box box-container">
-
+               
             </div>
             <div class="blocked-box box-container">
+               
 
-            </div>
-             
             </div>
         </div>
     </div>
+    </div>
 </body>
 <script src="./task.js"></script>
+
 </html>
