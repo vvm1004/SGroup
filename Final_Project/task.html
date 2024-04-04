@@ -20,6 +20,29 @@
             <button onclick="onCreate()">Submit</button>
         </div>
     </div>
+    <div class="popup-container edit-popup active">
+        <div class="popup-main popup-main2">
+            <h1 style="margin-bottom: 8px; text-align: center;">Edit Todo</h1>
+            <input type="text" id="edit-field-category" placeholder="Category Etc: Marketing">
+            <input type="text" id="edit-field-title" placeholder="Title">
+            <textarea name="" id="edit-field-content" cols="30" rows="10" placeholder="Content"></textarea>
+            <div class="checkbox-radio">
+                <div class="radio">
+                    <input type="radio" name="radio" id="" >ToDo</input>
+                </div>
+                <div class="radio">
+                    <input type="radio" name="radio" id="" >Doing</input>
+                </div>
+                <div class="">
+                    <input type="radio" name="radio" id="" >Finished</input>
+                </div>
+            </div>
+           
+            <button style="margin-top: 8px;" onclick="onUpdate()">Update</button>
+        </div>
+    </div>
+    
+    
     
     <div class="app grid wide">
         <div class="header">
@@ -80,14 +103,11 @@
                 
             </div>
             <div class="doing-box box-container">
-                <div class="box"></div>
             </div>
             <div class="completed-box box-container">
-                <div class="box"></div>
 
             </div>
             <div class="blocked-box box-container">
-                <div class="box"></div>
 
             </div>
              

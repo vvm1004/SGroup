@@ -34,8 +34,8 @@ function createTodoBox(item, category, title, content) {
         <div class="box">
             <div class="category">${category}
                 <div class="category__img">
-                    <img src="./assests/icon/edit.svg" alt="">
-                    <img src="./assests/icon/delete.svg" alt="" onclick="onDelete(${item})">
+                <img src="./assests/icon/edit.svg" alt="" onclick="openEditPopupWithDetails(${item})"> 
+                <img src="./assests/icon/delete.svg" alt="" onclick="onDelete(${item})">
                 </div>
             </div>
             <div class="title">${title}</div>
@@ -104,3 +104,33 @@ document.addEventListener("DOMContentLoaded", function () {
         todoBox.innerHTML += todoHTML;
     });
 });
+
+
+//--------------EDIT-------------------------
+
+let editPopupContainer = document.querySelector(".edit-popup");
+let popupMain2 = document.querySelector(".popup-main2");
+
+
+//close popup
+editPopupContainer.addEventListener('click', function () {
+    editPopupContainer.classList.toggle('active')
+})
+
+
+//prevent main popup close
+popupMain2.addEventListener('click', function (event) {
+    event.stopPropagation()
+})
+// Function to open edit popup with task details filled in
+function openEditPopupWithDetails(index) {
+    var todos = JSON.parse(localStorage.getItem('todos')) || [];
+    var todo = todos[index];
+    document.getElementById("edit-field-category").value = todo.categoryName;
+    document.getElementById("edit-field-title").value = todo.title;
+    document.getElementById("edit-field-content").value = todo.content;
+    // document.getElementById("edit-task-index").value = index; // Lưu vị trí của nhiệm vụ trong danh sách
+    editPopupContainer.classList.toggle('active');
+}
+
+

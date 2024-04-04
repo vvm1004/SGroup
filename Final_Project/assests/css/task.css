@@ -245,7 +245,13 @@
 .popup-main button:hover {
     background-color: #0056b3; /* Màu nền của nút khi di chuột qua */
 }
-
+.checkbox-radio{
+    display: flex;
+    justify-content: space-around;
+}
+.popup-main input[type="radio"]{
+    margin-right: 4px;
+}
 .active{
     display: none;
 }
