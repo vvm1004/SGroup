@@ -32,7 +32,7 @@ function createTodoBox(index, category, title, content) {
     var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
     return `
-        <div class="box"">
+        <div class="box">
             <div class="category">${category}
                 <div class="category__img">
                     <img src="./assests/icon/edit.svg" alt="" onclick="openEditPopupWithDetails(${index})"> 

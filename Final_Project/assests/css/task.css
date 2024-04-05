@@ -258,11 +258,25 @@
 }
 .todo-container {
     display: flex;
+    flex-direction: column;
     /* justify-content: space-between; */
+}
+.doing-container{
+    display: flex;
+    flex-direction: column;
+}
+.completed-container{
+    display: flex;
+    flex-direction: column;
+}
+.blocked-container{
+    display: flex;
+    flex-direction: column;
 }
 
 .box-container {
-    width: 25%;
+    width: 85%;
     height: 1000px;
     /* background-color: #0056b3; */
 }
+
