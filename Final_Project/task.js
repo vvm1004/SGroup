@@ -147,25 +147,45 @@ function renderTasks() {
     // Get current tasks from localStorage
     var todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-    // Clear existing task boxes
-    document.querySelector(".todo-box").innerHTML = "";
-    document.querySelector(".doing-box").innerHTML = "";
-    document.querySelector(".completed-box").innerHTML = "";
-    document.querySelector(".blocked-box").innerHTML = "";
+    // Clear existing task boxes and counters
+    var todoContainer = document.querySelector(".todo-box");
+    var doingContainer = document.querySelector(".doing-box");
+    var completedContainer = document.querySelector(".completed-box");
+    var blockedContainer = document.querySelector(".blocked-box");
+    todoContainer.innerHTML = "";
+    doingContainer.innerHTML = "";
+    completedContainer.innerHTML = "";
+    blockedContainer.innerHTML = "";
+
+    // Initialize counters
+    var todoCount = 0;
+    var doingCount = 0;
+    var completedCount = 0;
+    var blockedCount = 0;
 
     // Loop through tasks and render them in corresponding boxes based on their status
-    todos.forEach(function(todo, index) {
+    todos.forEach(function (todo, index) {
         var todoHTML = createTodoBox(index, todo.categoryName, todo.title, todo.content);
         if (todo.status === "ToDo") {
-            document.querySelector(".todo-box").innerHTML += todoHTML;
+            todoContainer.innerHTML += todoHTML;
+            todoCount++;
         } else if (todo.status === "Doing") {
-            document.querySelector(".doing-box").innerHTML += todoHTML;
+            doingContainer.innerHTML += todoHTML;
+            doingCount++;
         } else if (todo.status === "Completed") {
-            document.querySelector(".completed-box").innerHTML += todoHTML;
+            completedContainer.innerHTML += todoHTML;
+            completedCount++;
         } else if (todo.status === "Blocked") {
-            document.querySelector(".blocked-box").innerHTML += todoHTML;
+            blockedContainer.innerHTML += todoHTML;
+            blockedCount++;
         }
     });
+
+    // Update the number-text spans with the counts
+    document.querySelector(".todo .number-text").textContent = todoCount;
+    document.querySelector(".doing .number-text").textContent = doingCount;
+    document.querySelector(".completed .number-text").textContent = completedCount;
+    document.querySelector(".blocked .number-text").textContent = blockedCount;
 }
 
 // Function to handle task submission
@@ -220,7 +240,7 @@ function createInitialTask() {
 }
 
 // Gọi hàm tạo task ban đầu khi DOM được tải hoàn toàn
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Kiểm tra xem đã có task trong localStorage chưa
     if (!localStorage.getItem("todos")) {
         // Nếu chưa có, tạo task ban đầu và lưu vào localStorage
