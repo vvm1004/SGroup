@@ -116,19 +116,31 @@ function updateTask(index, newCategoryName, newTitle, newContent, newStatus) {
     // Get current tasks from localStorage
     var todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-    // Update the task at the specified index
-    todos[index].categoryName = newCategoryName;
-    todos[index].title = newTitle;
-    todos[index].content = newContent;
-    todos[index].status = newStatus;
+    // Check if the index is valid
+    if (index >= 0 && index < todos.length) {
+        // Remove the task from its current position
+        var updatedTask = todos.splice(index, 1)[0];
 
-    // Save the updated tasks back to localStorage
-    localStorage.setItem("todos", JSON.stringify(todos));
-    editPopupContainer.classList.add('hidden');
+        // Update the task
+        updatedTask.categoryName = newCategoryName;
+        updatedTask.title = newTitle;
+        updatedTask.content = newContent;
+        updatedTask.status = newStatus;
 
-    // Render tasks based on their status
-    renderTasks();
+        // Add the updated task to the end of the list
+        todos.push(updatedTask);
+
+        // Save the updated tasks back to localStorage
+        localStorage.setItem("todos", JSON.stringify(todos));
+        editPopupContainer.classList.add('hidden');
+
+        // Render tasks based on their status
+        renderTasks();
+    } else {
+        console.error("Invalid task index.");
+    }
 }
+
 
 // Function to render tasks based on their status
 function renderTasks() {
