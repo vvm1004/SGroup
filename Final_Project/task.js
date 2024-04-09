@@ -196,6 +196,9 @@ function clearValidation() {
     document.getElementById("field-category").classList.remove("input-error");
     document.getElementById("field-title").classList.remove("input-error");
     document.getElementById("field-content").classList.remove("input-error");
+    document.getElementById("edit-field-category").classList.remove("input-error");
+    document.getElementById("edit-field-title").classList.remove("input-error");
+    document.getElementById("edit-field-content").classList.remove("input-error");
 }
 popupContainer.addEventListener('click', function () {
     clearValidation()
@@ -249,18 +252,48 @@ function onDelete(index) {
     removeTask(index);
 }
 
+function validateFieldsForUpdate(category, title, content) {
+
+    if (!category || !title || !content) {
+        if (!category) {
+            document.getElementById("edit-field-category").classList.add("input-error");
+        } 
+        if (!title) {
+            document.getElementById("edit-field-title").classList.add("input-error");
+        } 
+        if (!content) {
+            document.getElementById("edit-field-content").classList.add("input-error");
+        } 
+        return false;
+    }
+    return true;
+}
+editPopupContainer.addEventListener('click', function () {
+  clearValidation()
+})
+// Clear validation when inputs are focused
+document.getElementById("edit-field-category").addEventListener("focus", function() {
+    clearValidationForField("edit-field-category");
+});
+document.getElementById("edit-field-title").addEventListener("focus", function() {
+    clearValidationForField("edit-field-title");
+});
+document.getElementById("edit-field-content").addEventListener("focus", function() {
+    clearValidationForField("edit-field-content");
+});
+
 // Function to handle task update
 function onUpdate() {
     var index = document.getElementById("edit-task-index").value;
-    var newCategoryName = document.getElementById("edit-field-category").value;
-    var newTitle = document.getElementById("edit-field-title").value;
-    var newContent = document.getElementById("edit-field-content").value;
-    var radioValue = document.querySelector('input[name="radio"]:checked').value;
+    var newCategoryName = document.getElementById("edit-field-category");
+    var newTitle = document.getElementById("edit-field-title");
+    var newContent = document.getElementById("edit-field-content");
+    var radioValue = document.querySelector('input[name="radio"]:checked');
 
-    updateTask(index, newCategoryName, newTitle, newContent, radioValue);
-
-    // Close the popup
-    document.querySelector(".edit-popup").classList.remove('active');
+    if (validateFieldsForUpdate(newCategoryName.value, newTitle.value, newContent.value)) {
+        updateTask(index, newCategoryName.value, newTitle.value, newContent.value, radioValue.value);
+        document.querySelector(".edit-popup").classList.add('hidden');
+    }
 }
 
 // Hàm tạo task ban đầu và lưu vào localStorage
