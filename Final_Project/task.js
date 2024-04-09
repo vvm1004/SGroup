@@ -187,19 +187,62 @@ function renderTasks() {
     document.querySelector(".completed .number-text").textContent = completedCount;
     document.querySelector(".blocked .number-text").textContent = blockedCount;
 }
+// Function to clear validation effect for a specific input field
+function clearValidationForField(fieldId) {
+    document.getElementById(fieldId).classList.remove("input-error");
+}
+// Function to clear validation effects
+function clearValidation() {
+    document.getElementById("field-category").classList.remove("input-error");
+    document.getElementById("field-title").classList.remove("input-error");
+    document.getElementById("field-content").classList.remove("input-error");
+}
+popupContainer.addEventListener('click', function () {
+    clearValidation()
+})
+
+// Function to validate input fields
+function validateFields(category, title, content) {
+    if (!category || !title || !content) {
+        if (!category) {
+            document.getElementById("field-category").classList.add("input-error");
+        } 
+        if (!title) {
+            document.getElementById("field-title").classList.add("input-error");
+        } 
+        if (!content) {
+            document.getElementById("field-content").classList.add("input-error");
+        } 
+        return false;
+    }
+    return true;
+}
+
 
 // Function to handle task submission
 function onCreate() {
-    var categoryName = document.getElementById("field-category").value;
-    var title = document.getElementById("field-title").value;
-    var content = document.getElementById("field-content").value;
-    // var radioValue = document.querySelector('input[name="radio"]:checked').value;
+    
+    var categoryName = document.getElementById("field-category");
+    var title = document.getElementById("field-title");
+    var content = document.getElementById("field-content");
 
-    addNewTask(categoryName, title, content);
-
-    // Close the popup
-    document.querySelector(".popup-container").classList.add('hidden');
+    if (validateFields(categoryName.value, title.value, content.value)) {
+        addNewTask(categoryName.value, title.value, content.value);
+        document.querySelector(".popup-container").classList.add('hidden');
+    }
 }
+
+// Clear validation when inputs are focused
+document.getElementById("field-category").addEventListener("focus", function() {
+    clearValidationForField("field-category");
+});
+document.getElementById("field-title").addEventListener("focus", function() {
+    clearValidationForField("field-title");
+});
+document.getElementById("field-content").addEventListener("focus", function() {
+    clearValidationForField("field-content");
+});
+
 
 // Function to handle task deletion
 function onDelete(index) {
@@ -248,4 +291,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     renderTasks()
 });
+
 
