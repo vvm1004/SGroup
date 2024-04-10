@@ -77,6 +77,8 @@ function openEditPopupWithDetails(index) {
     document.getElementById("edit-field-category").value = todo.categoryName;
     document.getElementById("edit-field-title").value = todo.title;
     document.getElementById("edit-field-content").value = todo.content;
+    let status = todo.status;
+    document.getElementById(status.toLowerCase()).checked = true;
     document.getElementById("edit-task-index").value = index; // Lưu vị trí của nhiệm vụ trong danh sách
     editPopupContainer.classList.toggle('hidden');
 }
@@ -372,7 +374,10 @@ document.addEventListener('drop', function (event) {
     event.preventDefault();
     // Lấy thông tin về task được kéo
     var taskId = event.dataTransfer.getData('text/plain');
+    console.log(taskId)
     var draggedTask = document.getElementById(taskId);
+    console.log(draggedTask)
+
     // Tìm phần tử cha gần nhất có class là todo-container, doing-container, completed-container, hoặc blocked-container
     var targetContainer = event.target.closest('.todo-container, .doing-container, .completed-container, .blocked-container');
     if (targetContainer) {
