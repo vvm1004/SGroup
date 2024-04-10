@@ -34,7 +34,7 @@ function createTodoBox(index, category, title, content, formattedDate, formatted
     // var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
     return `
-        <div class="box">
+        <div class="box" id="task-${index}" data-index="${index}" draggable="true">
             <div class="category">${category}
                 <div class="category__img">
                     <img src="./assests/icon/edit.svg" alt="" onclick="openEditPopupWithDetails(${index})"> 
@@ -349,3 +349,47 @@ function logout() {
 
 // Lắng nghe sự kiện click trên nút logout
 document.getElementById('logoutButton').addEventListener('click', logout);
+
+
+// Thêm sự kiện dragstart vào task box
+document.addEventListener('dragstart', function(event) {
+    if (event.target.classList.contains('box')) {
+        // Lưu thông tin về task được kéo
+        event.dataTransfer.setData('text/plain', event.target.id);
+        // Thêm class 'dragging' để tạo hiệu ứng CSS khi kéo
+        event.target.classList.add('dragging');
+    }
+});
+
+// Thêm sự kiện dragover vào vùng đích
+document.addEventListener('dragover', function(event) {
+    event.preventDefault();
+    // Hiển thị phản hồi trực quan cho người dùng
+});
+
+// Thêm sự kiện drop vào vùng đích
+document.addEventListener('drop', function(event) {
+    event.preventDefault();
+    // Lấy thông tin về task được kéo
+    var taskId = event.dataTransfer.getData('text/plain');
+    var draggedTask = document.getElementById(taskId);
+   // Tìm phần tử cha gần nhất có class là todo-container, doing-container, completed-container, hoặc blocked-container
+   var targetContainer = event.target.closest('.todo-container, .doing-container, .completed-container, .blocked-container');
+   if (targetContainer) {
+       // Di chuyển task đến vị trí mới và cập nhật trạng thái
+       targetContainer.querySelector('.box-container').appendChild(draggedTask);
+       // Xóa class 'dragging' để loại bỏ hiệu ứng CSS khi kéo
+       draggedTask.classList.remove('dragging');
+       // Cập nhật trạng thái của task
+       // renderTasks(); // Hãy cập nhật lại giao diện sau khi thay đổi trạng thái của task
+   }
+});
+
+// Thêm sự kiện dragend để cập nhật giao diện sau khi kéo và thả kết thúc
+document.addEventListener('dragend', function(event) {
+    // Xóa class 'dragging' cho tất cả các task box để loại bỏ hiệu ứng CSS khi kéo
+    var draggedTasks = document.querySelectorAll('.box.dragging');
+    draggedTasks.forEach(function(task) {
+        task.classList.remove('dragging');
+    });
+});

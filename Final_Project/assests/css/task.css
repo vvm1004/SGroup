@@ -363,3 +363,8 @@
     }
 }
 
+/* Cập nhật CSS cho task box khi được kéo */
+.box.dragging {
+    opacity: 0.5; /* Giảm độ trong suốt của task box khi kéo */
+    /* Thêm các hiệu ứng thị giảm kích thước, shadow, v.v. tùy ý */
+}
