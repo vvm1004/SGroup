@@ -3,7 +3,9 @@ let popupContainer = document.querySelector(".popup-container")
 let popupMain = document.querySelector(".popup-main")
 let newTaskButton = document.getElementById('newTaskButton')
 let todoBox = document.querySelector(".todo-box");
-
+let currentDate = new Date();
+let formattedDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+let formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
 //open popup
 newTaskButton.addEventListener('click', function () {
@@ -26,10 +28,10 @@ popupMain.addEventListener('click', function (event) {
 
 
 // Hàm tạo box nhiệm vụ mới
-function createTodoBox(index, category, title, content) {
-    var currentDate = new Date();
-    var formattedDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+function createTodoBox(index, category, title, content, formattedDate, formattedTime) {
+    // var currentDate = new Date();
+    // var formattedDate = currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    // var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
     return `
         <div class="box">
@@ -86,8 +88,9 @@ function addNewTask(categoryName, title, content) {
     // Get current tasks from localStorage
     var todos = JSON.parse(localStorage.getItem('todos')) || [];
 
+
     // Add the new task to the array
-    todos.push({ categoryName: categoryName, title: title, content: content, status: 'ToDo' });
+    todos.push({ categoryName: categoryName, title: title, content: content, status: 'ToDo', formattedDate: formattedDate, formattedTime: formattedTime });
 
     // Save the updated tasks back to localStorage
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -115,7 +118,6 @@ function removeTask(index) {
 function updateTask(index, newCategoryName, newTitle, newContent, newStatus) {
     // Get current tasks from localStorage
     var todos = JSON.parse(localStorage.getItem('todos')) || [];
-
     // Check if the index is valid
     if (index >= 0 && index < todos.length) {
         // Remove the task from its current position
@@ -126,6 +128,8 @@ function updateTask(index, newCategoryName, newTitle, newContent, newStatus) {
         updatedTask.title = newTitle;
         updatedTask.content = newContent;
         updatedTask.status = newStatus;
+        updatedTask.formattedDate = formattedDate;
+        updatedTask.formattedTime = formattedTime
 
         // Add the updated task to the end of the list
         todos.push(updatedTask);
@@ -165,7 +169,7 @@ function renderTasks() {
 
     // Loop through tasks and render them in corresponding boxes based on their status
     todos.forEach(function (todo, index) {
-        var todoHTML = createTodoBox(index, todo.categoryName, todo.title, todo.content);
+        var todoHTML = createTodoBox(index, todo.categoryName, todo.title, todo.content, todo.formattedDate, todo.formattedTime);
         if (todo.status === "ToDo") {
             todoContainer.innerHTML += todoHTML;
             todoCount++;
@@ -209,13 +213,13 @@ function validateFields(category, title, content) {
     if (!category || !title || !content) {
         if (!category) {
             document.getElementById("field-category").classList.add("input-error");
-        } 
+        }
         if (!title) {
             document.getElementById("field-title").classList.add("input-error");
-        } 
+        }
         if (!content) {
             document.getElementById("field-content").classList.add("input-error");
-        } 
+        }
         return false;
     }
     return true;
@@ -224,7 +228,7 @@ function validateFields(category, title, content) {
 
 // Function to handle task submission
 function onCreate() {
-    
+
     var categoryName = document.getElementById("field-category");
     var title = document.getElementById("field-title");
     var content = document.getElementById("field-content");
@@ -236,13 +240,13 @@ function onCreate() {
 }
 
 // Clear validation when inputs are focused
-document.getElementById("field-category").addEventListener("focus", function() {
+document.getElementById("field-category").addEventListener("focus", function () {
     clearValidationForField("field-category");
 });
-document.getElementById("field-title").addEventListener("focus", function() {
+document.getElementById("field-title").addEventListener("focus", function () {
     clearValidationForField("field-title");
 });
-document.getElementById("field-content").addEventListener("focus", function() {
+document.getElementById("field-content").addEventListener("focus", function () {
     clearValidationForField("field-content");
 });
 
@@ -257,28 +261,28 @@ function validateFieldsForUpdate(category, title, content) {
     if (!category || !title || !content) {
         if (!category) {
             document.getElementById("edit-field-category").classList.add("input-error");
-        } 
+        }
         if (!title) {
             document.getElementById("edit-field-title").classList.add("input-error");
-        } 
+        }
         if (!content) {
             document.getElementById("edit-field-content").classList.add("input-error");
-        } 
+        }
         return false;
     }
     return true;
 }
 editPopupContainer.addEventListener('click', function () {
-  clearValidation()
+    clearValidation()
 })
 // Clear validation when inputs are focused
-document.getElementById("edit-field-category").addEventListener("focus", function() {
+document.getElementById("edit-field-category").addEventListener("focus", function () {
     clearValidationForField("edit-field-category");
 });
-document.getElementById("edit-field-title").addEventListener("focus", function() {
+document.getElementById("edit-field-title").addEventListener("focus", function () {
     clearValidationForField("edit-field-title");
 });
-document.getElementById("edit-field-content").addEventListener("focus", function() {
+document.getElementById("edit-field-content").addEventListener("focus", function () {
     clearValidationForField("edit-field-content");
 });
 
@@ -302,7 +306,9 @@ function createInitialTask() {
         categoryName: "Default Category",
         title: "Sample Task",
         content: "This is a sample task created initially.",
-        status: "ToDo" // Trạng thái mặc định là "ToDo"
+        status: "ToDo", // Trạng thái mặc định là "ToDo",
+        formattedDate,
+        formattedTime
     };
 
     // Kiểm tra xem có dữ liệu trong localStorage hay không
