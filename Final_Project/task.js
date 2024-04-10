@@ -323,12 +323,29 @@ function createInitialTask() {
 
 // Gọi hàm tạo task ban đầu khi DOM được tải hoàn toàn
 document.addEventListener("DOMContentLoaded", function () {
-    // Kiểm tra xem đã có task trong localStorage chưa
-    if (!localStorage.getItem("todos")) {
-        // Nếu chưa có, tạo task ban đầu và lưu vào localStorage
-        createInitialTask();
+    // Kiểm tra xem đã có user trong localStorage hay chưa
+    var user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        // Nếu không có user, chuyển hướng người dùng về trang index.html
+        window.location.href = 'index.html';
+    } else {
+        // Kiểm tra xem đã có task trong localStorage chưa
+        if (!localStorage.getItem("todos")) {
+            // Nếu chưa có, tạo task ban đầu và lưu vào localStorage
+            createInitialTask();
+        }
+        renderTasks()
     }
-    renderTasks()
+
 });
 
 
+// Function to handle logout
+function logout() {
+    // Xóa thông tin người dùng khỏi localStorage
+    localStorage.removeItem('user');
+    window.location.href = 'index.html';
+}
+
+// Lắng nghe sự kiện click trên nút logout
+document.getElementById('logoutButton').addEventListener('click', logout);

@@ -12,7 +12,7 @@ document.querySelector('.btn-login').addEventListener('click', async () => {
         if (!isValidEmail(email)) {
             emailError.textContent = "Email must be in correct format";
             isValid = false;
-        }else{
+        } else {
             emailError.textContent = "";
 
         }
@@ -21,11 +21,11 @@ document.querySelector('.btn-login').addEventListener('click', async () => {
         if (!isValidPassword(password)) {
             passwordError.textContent = "Password must be greater than 8 characters";
             isValid = false;
-        }else{
-            passwordError.textContent = "";  
+        } else {
+            passwordError.textContent = "";
         }
-        
-        if (isValid ) {
+
+        if (isValid) {
             const formData = {
                 login: email,
                 password: password
@@ -45,8 +45,9 @@ document.querySelector('.btn-login').addEventListener('click', async () => {
                 // Xử lý phản hồi thành công
                 console.log(data.message);
                 if (data.status === "ok") {
+                    localStorage.setItem('user', JSON.stringify(formData));
                     window.location.href = 'task.html';
-                }else{
+                } else {
                     // emailError.textContent = "Invalid Email or Password";
                     passwordError.textContent = "Invalid Email or Password";
 
@@ -69,8 +70,17 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Hàm kiểm tra mật khẩu phải bao gồm chữ hoa, chữ thường, số và kí tự đặc biệt
+// Hàm kiểm tra mật khẩu phải lớn hơn 8 kí tự
 function isValidPassword(password) {
     const passwordRegex = /^.{8,}$/;
     return passwordRegex.test(password);
-  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Kiểm tra xem localStorage có thông tin user không
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        // Nếu có, chuyển hướng người dùng đến trang task.html
+        window.location.href = 'task.html';
+    }
+});

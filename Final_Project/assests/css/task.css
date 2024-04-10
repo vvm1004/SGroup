@@ -183,11 +183,16 @@
     margin-right: 4px;
 }
 
-.header {
-    
+.header { 
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.header-logout{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .header-text {
