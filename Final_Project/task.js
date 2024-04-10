@@ -352,7 +352,7 @@ document.getElementById('logoutButton').addEventListener('click', logout);
 
 
 // Thêm sự kiện dragstart vào task box
-document.addEventListener('dragstart', function(event) {
+document.addEventListener('dragstart', function (event) {
     if (event.target.classList.contains('box')) {
         // Lưu thông tin về task được kéo
         event.dataTransfer.setData('text/plain', event.target.id);
@@ -362,34 +362,64 @@ document.addEventListener('dragstart', function(event) {
 });
 
 // Thêm sự kiện dragover vào vùng đích
-document.addEventListener('dragover', function(event) {
+document.addEventListener('dragover', function (event) {
     event.preventDefault();
     // Hiển thị phản hồi trực quan cho người dùng
 });
 
 // Thêm sự kiện drop vào vùng đích
-document.addEventListener('drop', function(event) {
+document.addEventListener('drop', function (event) {
     event.preventDefault();
     // Lấy thông tin về task được kéo
     var taskId = event.dataTransfer.getData('text/plain');
     var draggedTask = document.getElementById(taskId);
-   // Tìm phần tử cha gần nhất có class là todo-container, doing-container, completed-container, hoặc blocked-container
-   var targetContainer = event.target.closest('.todo-container, .doing-container, .completed-container, .blocked-container');
-   if (targetContainer) {
-       // Di chuyển task đến vị trí mới và cập nhật trạng thái
-       targetContainer.querySelector('.box-container').appendChild(draggedTask);
-       // Xóa class 'dragging' để loại bỏ hiệu ứng CSS khi kéo
-       draggedTask.classList.remove('dragging');
-       // Cập nhật trạng thái của task
-       // renderTasks(); // Hãy cập nhật lại giao diện sau khi thay đổi trạng thái của task
-   }
+    // Tìm phần tử cha gần nhất có class là todo-container, doing-container, completed-container, hoặc blocked-container
+    var targetContainer = event.target.closest('.todo-container, .doing-container, .completed-container, .blocked-container');
+    if (targetContainer) {
+        // Di chuyển task đến vị trí mới và cập nhật trạng thái
+        targetContainer.querySelector('.box-container').appendChild(draggedTask);
+        // Xóa class 'dragging' để loại bỏ hiệu ứng CSS khi kéo
+        draggedTask.classList.remove('dragging');
+        // Cập nhật trạng thái của task
+        updateTaskStatus(taskId, targetContainer);
+        // renderTasks(); // Hãy cập nhật lại giao diện sau khi thay đổi trạng thái của task
+    }
 });
+// Function to update task status after drag and drop
+function updateTaskStatus(taskId, targetContainer) {
+    // Lấy trạng thái mới từ class của targetContainer
+    var newStatus = targetContainer.classList.contains('todo-container') ? 'ToDo' :
+                    targetContainer.classList.contains('doing-container') ? 'Doing' :
+                    targetContainer.classList.contains('completed-container') ? 'Completed' :
+                    targetContainer.classList.contains('blocked-container') ? 'Blocked' :
+                    '';
+    // Lấy chỉ số của task từ ID
+    var index = taskId.split('-')[1];
+    // Lấy ra danh sách tasks từ localStorage
+    var todos = JSON.parse(localStorage.getItem('todos')) || [];
+    // Kiểm tra xem chỉ số task có hợp lệ không
+    if (index >= 0 && index < todos.length) {
+        // Cập nhật trạng thái mới của task
+        todos[index].status = newStatus;
+        // Tính toán lại chỉ số mới của task dựa trên vị trí của targetContainer
+        var newIndex = Array.from(targetContainer.querySelectorAll('.box')).indexOf(document.getElementById(taskId));
+        // Di chuyển task tới vị trí mới trong danh sách
+        var task = todos.splice(index, 1)[0];
+        todos.splice(newIndex, 0, task);
+        // Lưu danh sách tasks đã cập nhật vào localStorage
+        localStorage.setItem('todos', JSON.stringify(todos));
+        // Cập nhật lại giao diện
+        renderTasks();
+    } else {
+        console.error('Invalid task index.');
+    }
+}
 
 // Thêm sự kiện dragend để cập nhật giao diện sau khi kéo và thả kết thúc
-document.addEventListener('dragend', function(event) {
+document.addEventListener('dragend', function (event) {
     // Xóa class 'dragging' cho tất cả các task box để loại bỏ hiệu ứng CSS khi kéo
     var draggedTasks = document.querySelectorAll('.box.dragging');
-    draggedTasks.forEach(function(task) {
+    draggedTasks.forEach(function (task) {
         task.classList.remove('dragging');
     });
 });
